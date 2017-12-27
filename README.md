@@ -1,5 +1,6 @@
 # Clover
 [![CircleCI](https://circleci.com/gh/InkedFur/clover-ruby/tree/master.svg?style=svg)](https://circleci.com/gh/InkedFur/clover-ruby/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fb5f7c9bea48b85571c7/maintainability)](https://codeclimate.com/github/InkedFur/clover-ruby/maintainability)
 
 Work in progress! This gem provides a handy ORM-like wrapper for the Clover API.
 
