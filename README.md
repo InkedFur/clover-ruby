@@ -40,6 +40,16 @@ Clover.configure do |config|
 end
 ```
 
+If you don't want to specify a config block, Clover will default
+to using your ENV variables. The names are the same, with
+`CLOVER_` prepended to them. You should check out the `dot-env` gem!
+
+```ruby
+ENV['CLOVER_CLIENT_ID'] = 'foobar'
+
+Clover.configuration.client_id #=> 'foobar'
+```
+
 Then, change your Merchant name:
 
 ```ruby

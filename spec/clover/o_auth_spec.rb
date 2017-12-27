@@ -15,8 +15,16 @@ describe Clover::OAuth do
     end
 
     it 'generates valid token' do
-      expect(Clover::OAuth.get_token 'abc123').to eq 'fakeresponseapikey'
-      expect(Clover.configuration.api_token).to eq 'fakeresponseapikey'
+      expect(Clover::OAuth.get_token 'abc123').to eq 'notanapikey'
+      expect(Clover.configuration.api_token).to eq 'notanapikey'
+    end
+
+    it 'handles response params' do
+      params = { merchant_id: 'foobar', code: 'iliketacos', client_id: 'theappid' }
+      Clover::OAuth.handle_authorize_response params
+
+      expect(Clover.configuration.api_token).to eq 'notanapikey'
+      expect(Clover::Merchant.current.id).to eq 'foobar'
     end
   end
 end
