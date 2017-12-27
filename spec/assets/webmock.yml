@@ -1,0 +1,29 @@
+- path: /merchants
+  content: |
+    [{
+        "id": "foobar",
+        "name": "Foo Bar, Inc.",
+        "items": []
+    },
+    {
+        "id": "foobaz",
+        "name": "Baz Foober, Inc.",
+        "items": []
+    }]
+
+- path: /merchants/foobar
+  content: |
+    {
+        "id": "foobar",
+        "name": "Foo Bar, Inc.",
+        "items": []
+    }
+
+- path: /merchants/foobar
+  method: POST
+  content: |
+    {
+        "id": "foobar",
+        "name": "Updated Foobar",
+        "items": []
+    }

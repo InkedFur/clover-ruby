@@ -1,6 +1,3 @@
-require "clover/version"
-require 'clover/configuration'
-
 module Clover
   class << self
     attr_writer :configuration
@@ -14,3 +11,15 @@ module Clover
     yield configuration
   end
 end
+
+# Dependencies
+require 'her'
+
+# Local
+require 'clover/version'
+require 'clover/configuration'
+require 'clover/authentication'
+require 'clover/remote_base'
+
+# Models
+require 'clover/merchant'
