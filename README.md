@@ -1,10 +1,7 @@
-# Clover::Ruby
+# Clover
 [![CircleCI](https://circleci.com/gh/InkedFur/clover-ruby/tree/master.svg?style=svg)](https://circleci.com/gh/InkedFur/clover-ruby/tree/master)
 
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/clover/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Work in progress! This gem provides a handy ORM-like wrapper for the Clover API.
 
 ## Installation
 
@@ -24,7 +21,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First, configure (if Rails, add this to `config/initializers/clover.rb`):
+
+```ruby
+Clover.configure do |config|
+  # Required unless initializing via OAuth flow:
+  config.merchant_id = "<Clover Merchant ID>"
+  config.api_token = "<API Token from OAuth>" 
+
+  # Optional, required if using prod ENV:
+  config.api_endpoint = 'https://api.clover.com/v3'
+  
+  # Optional, required if using OAuth helpers:
+  config.client_secret = "<Your App Secret>"
+  config.client_id = "<Your App ID>"
+  config.oauth_authorize_url = 'https://api.clover.com'
+  config.oauth_redirect_url = 'https://yourapp.com/oauth/callback'
+end
+```
+
+Then, change your Merchant name:
+
+```ruby
+merchant = Clover::Merchant.find "<merchant id>"
+merchant.name = 'Some Cool Name'
+merchant.save
+```
+
+Assuming you configured with a `merchant_id`, get your items.
+
+```ruby
+merchant = Clover::Merchant.current
+merchant.items #=> [ #<Clover::Item id=1...> ]
+```
 
 ## Development
 

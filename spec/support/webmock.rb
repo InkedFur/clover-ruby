@@ -3,9 +3,12 @@ RSpec.configure do |config|
     webmocks = YAML.load_file 'spec/assets/webmock.yml'
 
     webmocks.each do |request|
+      base_uri = request['base_uri'] || CLOVER_BASE_URI
       method = request['method'] || :get
-      WebMock.stub_request(method.to_s.downcase.to_sym, CLOVER_BASE_URI + request['path']).
-          with(headers: { authorization: 'Bearer notanapikey' }).
+      headers = request.include?('headers') ? request['headers'] : { authorization: 'Bearer notanapikey' }
+
+      WebMock.stub_request(method.to_s.downcase.to_sym, base_uri + request['path']).
+          with(headers: { accept: '*/*' }.merge(headers ||  {})).
           to_return(status: request['status'] || 200, body: request['content'], headers: { content_type: 'application/json' })
     end
   end

@@ -26,6 +26,27 @@ describe Clover::Merchant do
     end
   end
 
+  describe 'current' do
+    configure_clover merchant_id: 'foobar'
+
+    context 'without merchant_id config' do
+      configure_clover merchant_id: nil
+
+      it 'explodes gracefully' do
+        expect { Clover::Merchant.current }.to raise_exception ArgumentError
+      end
+    end
+
+    it 'finds current merchant' do
+      merchant = Clover::Merchant.current
+
+      expect(merchant).to be_a Clover::Merchant
+      expect(merchant.name).to eq 'Foo Bar, Inc.'
+
+      expect_request '/merchants/foobar'
+    end
+  end
+
   describe 'new' do
     it 'finds merchant foobar' do
       merchant = Clover::Merchant.find 'foobar'

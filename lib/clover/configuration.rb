@@ -2,10 +2,17 @@ class Clover::Configuration
   attr_accessor :api_token
   attr_accessor :merchant_id
   attr_accessor :api_endpoint
+  attr_accessor :client_id
+  attr_accessor :client_secret
+
+  attr_accessor :oauth_authorize_uri
+  attr_accessor :oauth_redirect_uri
+
   attr_writer :her_api
 
   def initialize
     @api_endpoint = 'https://apisandbox.dev.clover.com'
+    @oauth_authorize_uri = 'https://sandbox.dev.clover.com/oauth/authorize'
   end
 
   def her_api

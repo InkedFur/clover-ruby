@@ -27,3 +27,14 @@
         "name": "Updated Foobar",
         "items": []
     }
+
+# OAUTH
+
+- path: /oauth/token
+  base_uri: https://sandbox.dev.clover.com
+  method: POST
+  headers:
+  content: |
+    {
+        "access_token": "fakeresponseapikey"
+    }
